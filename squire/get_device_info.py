@@ -5,6 +5,9 @@ model, and name
 
 import init
 import string
+import os
+
+adb_path = '~/Library/Android/sdk/platform-tools' 
 
 #returns the udids for all connected phones/emulators
 def get_info():
@@ -58,7 +61,10 @@ def get_name(device):
 
 
 def set_up_list():
-    output = init.run_cmd_with_output("adb devices -l")
+    curr_dir = os.getcwd()
+    os.chdir(os.path.expanduser(adb_path))
+    output = init.run_cmd_with_output("./adb devices -l")
+    os.chdir(curr_dir)
     lines = output.splitlines() #make each line an element of the array lines
     lines.pop(0) #get rid of the info line returned
     return lines
@@ -74,6 +80,8 @@ def find_colon(line, index):
         if len(colons) == index:
             return i
         i = i - 1
+
+
 
 
 
