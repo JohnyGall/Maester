@@ -10,7 +10,7 @@ from appium import webdriver
 from appium.webdriver.common.touch_action import TouchAction
 from appium.webdriver.common.multi_action import MultiAction
 
-apk_path = '../Squire-Example/app/test.apk'
+apk_path = '../../Squire-Example/app/test.apk'
 aapt_path = '~/Library/Android/sdk/build-tools/24.0.0' #to the directory containing the aapt
 adb_path = '~/Library/Android/sdk/platform-tools' #to the directory containing the adb
 
@@ -27,13 +27,13 @@ def set_up(self, device):
         desired_caps["noReset"] = 'true'
 
     desired_caps['platformName'] = 'Android'
-    desired_caps['platformVersion'] = get_platform_version(device)#run_cmd_with_output("adb -s " + device + " shell getprop ro.build.version.release") #TODO meaningful error handling if this fails
+    desired_caps['platformVersion'] = get_platform_version(device)
     desired_caps['deviceName'] = 'DeviceName'
     # Returns abs path relative to this file and not cwd
     #./aapt dump badging path_to_apk_file
     desired_caps['app'] = os.path.abspath(os.path.join(os.path.dirname(__file__), apk_path)) #TODO: Don't hard code thi
-    desired_caps['appPackage'] = 'com.dalviksoft.calculator' # Parse from selected apk?
-    desired_caps['appActivity'] = 'com.android2.calculator3.Calculator' # parse from selected APK
+    desired_caps['appPackage'] = get_capability("package:")
+    desired_caps['appActivity'] = get_capability("launchable-activity:")
     desired_caps['udid'] = device
     self.desired_caps = desired_caps
     self.driver = webdriver.Remote('http://localhost:4723/wd/hub', desired_caps)
@@ -53,9 +53,45 @@ def run_cmd_with_output(cmd):
     return out
 
 def get_platform_version(device):
-    #curr_dir = os.getcwd()
-    sys.path.append(os.path.realpath(adb_path))
-    #os.path.expanduser(adb_path)
-    version = run_cmd_with_output("./adb -s " + device + " shell getprop ro.build.version.release")
-    #os.chdir(curr_dir)
-    return version
+    curr_dir = os.getcwd()
+    os.chdir(os.path.expanduser(adb_path))
+    value = run_cmd_with_output("./adb -s " + device + " shell getprop ro.build.version.release")
+    os.chdir(curr_dir)
+    return value
+
+
+def get_capability(capability):
+    cap = ""
+    curr_dir = os.getcwd()
+    os.chdir(os.path.expanduser(aapt_path))
+    output = run_cmd_with_output("./aapt dump badging " + curr_dir + '/' + apk_path + ' -l')
+    output = output.splitlines()
+
+    for line in output:
+        if capability in line:
+            cap = get_capability_from_line(line)
+            break
+
+    os.chdir(curr_dir)
+    return cap
+    
+
+def get_capability_from_line(line):
+    cap = ""
+    parenths = list()
+
+    for char in line:
+        if char == "'":
+            parenths.append(char)
+        if len(parenths) == 1 and char != "'":
+            cap += char
+
+    return cap
+
+
+
+
+
+
+
+
