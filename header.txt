@@ -1,0 +1,3 @@
+# John Gallagher & Joe Campbell
+# August 2016
+# Squire, A platform, written in Python and using Appium, for running unit tests on multiple Android devices/emulators in series.
