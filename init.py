@@ -11,6 +11,8 @@ from appium.webdriver.common.touch_action import TouchAction
 from appium.webdriver.common.multi_action import MultiAction
 
 apk_path = '../Squire-Example/app/test.apk'
+aapt_path = '~/Library/Android/sdk/build-tools/24.0.0' #to the directory containing the aapt
+adb_path = '~/Library/Android/sdk/platform-tools' #to the directory containing the adb
 
 def set_up(self, device):
     apk_reinstall_flag = [line.rstrip('\n') for line in open('../app/apk_reinstall_flag')]
@@ -25,7 +27,7 @@ def set_up(self, device):
         desired_caps["noReset"] = 'true'
 
     desired_caps['platformName'] = 'Android'
-    desired_caps['platformVersion'] = run_cmd_with_output("adb -s " + device + " shell getprop ro.build.version.release") #TODO meaningful error handling if this fails
+    desired_caps['platformVersion'] = get_platform_version(device)#run_cmd_with_output("adb -s " + device + " shell getprop ro.build.version.release") #TODO meaningful error handling if this fails
     desired_caps['deviceName'] = 'DeviceName'
     # Returns abs path relative to this file and not cwd
     #./aapt dump badging path_to_apk_file
@@ -49,3 +51,11 @@ def run_cmd_with_output(cmd):
     out = subprocess.check_output(cmd)
     out = str(out).rstrip()
     return out
+
+def get_platform_version(device):
+    #curr_dir = os.getcwd()
+    sys.path.append(os.path.realpath(adb_path))
+    #os.path.expanduser(adb_path)
+    version = run_cmd_with_output("./adb -s " + device + " shell getprop ro.build.version.release")
+    #os.chdir(curr_dir)
+    return version
