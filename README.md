@@ -1,3 +1,3 @@
-# Squire
-# Squire, A platform, written in Python and using Appium, for running unit tests on multiple Android devices/emulators in series.
-#
+# Squire - A platform for running tests on multiple Android devices in series.
+## By John James Gallagher & Joseph Thomas Campbell
+## August 2016
