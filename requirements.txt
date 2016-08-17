@@ -5,5 +5,3 @@ twilio
 unicodecsv
 faker
 num2words
-requests
-lxml
