@@ -1,6 +1,5 @@
 # Squire - A platform for running tests on multiple Android devices in series.
-## By [John James Gallagher](http://johnygall.github.io/) &
-[Joseph Thomas Campbell](http://jcamp1095.github.io)
+## By [John James Gallagher](http://johnygall.github.io/) &[Joseph Thomas Campbell](http://jcamp1095.github.io)
 
 ### What is Squire?
 Squire is a platform, written in Python and using [Appium](http://appium.io/),
