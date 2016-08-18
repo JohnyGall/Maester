@@ -1,0 +1,29 @@
+08-18 11:27:08.113 292-292/? E/SMD: DCD ON
+08-18 11:27:10.453 9783-9783/? E/ConversationDetailActivity: Failed to decode stream.
+                                                             java.io.IOException: Failed to decode stream.
+                                                                 at com.squareup.picasso.BitmapHunter.decodeStream(BitmapHunter.java:145)
+                                                                 at com.squareup.picasso.BitmapHunter.hunt(BitmapHunter.java:217)
+                                                                 at com.squareup.picasso.RequestCreator.get(RequestCreator.java:396)
+                                                                 at com.walletheapp.walle.data.model.Message.lambda$generateForwardAttachment$1(Message.java:236)
+                                                                 at com.walletheapp.walle.data.model.Message.access$lambda$1(Message.java)
+                                                                 at com.walletheapp.walle.data.model.Message$$Lambda$2.call(Unknown Source)
+                                                                 at rx.internal.operators.OnSubscribeLift.call(OnSubscribeLift.java:50)
+                                                                 at rx.internal.operators.OnSubscribeLift.call(OnSubscribeLift.java:30)
+                                                                 at rx.internal.operators.OnSubscribeLift.call(OnSubscribeLift.java:50)
+                                                                 at rx.internal.operators.OnSubscribeLift.call(OnSubscribeLift.java:30)
+                                                                 at rx.internal.operators.OnSubscribeLift.call(OnSubscribeLift.java:50)
+                                                                 at rx.internal.operators.OnSubscribeLift.call(OnSubscribeLift.java:30)
+                                                                 at rx.Observable.unsafeSubscribe(Observable.java:8460)
+                                                                 at rx.internal.operators.OperatorSubscribeOn$1.call(OperatorSubscribeOn.java:94)
+                                                                 at rx.internal.schedulers.ScheduledAction.run(ScheduledAction.java:55)
+                                                                 at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:422)
+                                                                 at java.util.concurrent.FutureTask.run(FutureTask.java:237)
+                                                                 at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:152)
+                                                                 at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:265)
+                                                                 at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1112)
+                                                                 at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:587)
+                                                                 at java.lang.Thread.run(Thread.java:818)
+08-18 11:27:11.113 292-292/? E/SMD: DCD ON
+08-18 11:27:12.193 760-1453/? E/Watchdog: !@Sync 2268
+08-18 11:27:14.123 292-292/? E/SMD: DCD ON
+08-18 11:27:17.113 292-292/? E/SMD: DCD ON

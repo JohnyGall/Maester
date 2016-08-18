@@ -8,30 +8,33 @@ from time import sleep
 
 from appium import webdriver
 
-def init_server(self):
-    apk_path = self._apk_path
+def init_server(self, device):
+    apk_path = os.path.expanduser(self._apk_path)
+    print apk_path
     aapt_path = self._aapt_path
+    print aapt_path
     adb_path = self._adb_path
+    print adb_path
     # apk_reinstall_flag = [line.rstrip('\n') for line in open('../app/apk_reinstall_flag')]
 
     start_appium_server()
     sleep(20) # allow time for the pm2 process to start
     desired_caps = {}
 
-'''
+    '''
     if(apk_reinstall_flag[0] == "false"): # reinstall the APK after every test - disabled by default
         #print "apk_reinstall is false, setting desired caps"
         desired_caps["noReset"] = 'true'
-'''
-
+    '''
     desired_caps['platformName'] = 'Android'
-    desired_caps['platformVersion'] = get_platform_version(device)
+    desired_caps['platformVersion'] = get_platform_version(self, device)
     desired_caps['deviceName'] = 'DeviceName'
     # Returns abs path relative to this file and not cwd
     #./aapt dump badging path_to_apk_file
-    desired_caps['app'] = os.path.abspath(os.path.join(os.path.dirname(__file__), apk_path)) #TODO: Don't hard code thi
-    desired_caps['appPackage'] = get_capability("package:")
-    desired_caps['appActivity'] = get_capability("launchable-activity:")
+    desired_caps['app'] = apk_path
+    # os.path.abspath(os.path.join(os.path.dirname(__file__), apk_path)) #TODO: Don't hard code thi
+    desired_caps['appPackage'] = get_capability(apk_path, aapt_path, "package:")
+    desired_caps['appActivity'] = get_capability(apk_path, aapt_path, "launchable-activity:")
     desired_caps['udid'] = device
     self.desired_caps = desired_caps
     self.driver = webdriver.Remote('http://localhost:4723/wd/hub', desired_caps)
@@ -50,19 +53,21 @@ def run_cmd_with_output(cmd):
     out = str(out).rstrip()
     return out
 
-def get_platform_version(device):
+def get_platform_version(self, device):
     curr_dir = os.getcwd()
-    os.chdir(os.path.expanduser(adb_path))
+    os.chdir(os.path.expanduser(self._adb_path))
     value = run_cmd_with_output("./adb -s " + device + " shell getprop ro.build.version.release")
     os.chdir(curr_dir)
     return value
 
 
-def get_capability(capability):
+def get_capability(apk_path, aapt_path, capability):
     cap = ""
     curr_dir = os.getcwd()
     os.chdir(os.path.expanduser(aapt_path))
-    output = run_cmd_with_output("./aapt dump badging " + curr_dir + '/' + apk_path + ' -l')
+    print os.getcwd()
+    print apk_path
+    output = run_cmd_with_output("./aapt dump badging " + apk_path + ' -l')
     output = output.splitlines()
 
     for line in output:

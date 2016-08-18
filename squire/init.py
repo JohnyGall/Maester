@@ -10,8 +10,8 @@ from appium import webdriver
 
 
 apk_path = '../../Squire-Example/app/test.apk'
-aapt_path = '~/Library/Android/sdk/build-tools/24.0.0' 
-adb_path = '~/Library/Android/sdk/platform-tools' 
+aapt_path = '~/Library/Android/sdk/build-tools/23.0.3' 
+adb_path = '~/Library/Android/sdk/platform-tools'
 
 def set_up(self, device):
     apk_reinstall_flag = [line.rstrip('\n') for line in open('../app/apk_reinstall_flag')]
@@ -73,7 +73,7 @@ def get_capability(capability):
 
     os.chdir(curr_dir)
     return cap
-    
+
 
 def get_capability_from_line(line):
     cap = ""
@@ -86,8 +86,3 @@ def get_capability_from_line(line):
             cap += char
 
     return cap
-
-
-
-
-
