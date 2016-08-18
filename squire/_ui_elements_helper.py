@@ -14,13 +14,10 @@ def get_element(self, name):
     elem = self._ui_elements[name]
 
     if elem[:2] == "//":
-        ui_element = self._driver.find_element_by_xpath(elem)
+        ui_element = self.get_web_driver().find_element_by_xpath(elem)
     else:
-        ui_element = self._driver.find_element_by_id(elem)
+        ui_element = self.get_web_driver().find_element_by_id(elem)
     return ui_element
-
-
-
 
 
 '''
