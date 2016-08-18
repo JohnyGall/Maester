@@ -48,7 +48,7 @@ class new_squire:
         return _ui_elements_helper.get_element(self, name)
 
     def get_elements(self):
-        return _ui_elements`
+        return _ui_elements
 
     def get_devices(self):
         return _get_devices.get_info()
