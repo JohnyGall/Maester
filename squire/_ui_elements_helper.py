@@ -8,17 +8,16 @@ files
 #or the xpath AS A STRING.  The name is whatever the user wants to call
 #that element's key in the dictionary
 def add_element(self, element, name):
-    new_element = ""
-
-    if element[:2] == "//":
-        new_element = self.driver.find_element_by_xpath(element)
-    else:
-        new_element = self.driver.find_element_by_id(element)
-
-    self._ui_elements[name] = new_element
+    self._ui_elements[name] = element
 
 def get_element(self, name):
-    return self._ui_elements[name]
+    elem = self._ui_elements[name]
+
+    if elem[:2] == "//":
+        ui_element = self._driver.find_element_by_xpath(elem)
+    else:
+        ui_element = self._driver.find_element_by_id(elem)
+    return ui_element
 
 
 

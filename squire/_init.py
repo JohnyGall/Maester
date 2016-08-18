@@ -36,8 +36,8 @@ def init_server(self, device):
     desired_caps['appPackage'] = get_capability(apk_path, aapt_path, "package:")
     desired_caps['appActivity'] = get_capability(apk_path, aapt_path, "launchable-activity:")
     desired_caps['udid'] = device
-    self.desired_caps = desired_caps
-    self.driver = webdriver.Remote('http://localhost:4723/wd/hub', desired_caps)
+    self._desired_caps = desired_caps
+    self._driver = webdriver.Remote('http://localhost:4723/wd/hub', desired_caps)
 
 def start_appium_server():
     start_appium_cmd = "pm2 start appium"
