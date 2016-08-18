@@ -87,11 +87,6 @@ def get_capability_from_line(line):
 
     return cap
 
-def set_paths(adb_path1, apk_path1, aapt_path1):
-    adb_path = adb_path1
-    apk_path = apk_path1
-    aapt_path = aapt_path1
-
 
 
 

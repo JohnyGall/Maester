@@ -9,14 +9,20 @@ import os
 
 adb_path = '~/Library/Android/sdk/platform-tools' 
 
-#returns the udids for all connected phones/emulators
+#returns a dictionary of relevant information about all
+#connected devices.  Each device will have information 
+#about its udid, model, and name returned
 def get_info():
     devices = []
 
     lines = set_up_list()
 
     for i in range (0, len(lines)):
-        devices.append(get_phone(lines[i]))
+        info = {"udid": get_phone(lines[i]), 
+                "model": get_model(lines[i]), 
+                "name": get_name(lines[i])}
+
+        devices.append(info)
 
     return devices
 
@@ -31,31 +37,23 @@ def get_phone(id_line):
 
     return device
 
-def get_model(device):
-    lines = set_up_list()
+def get_model(id_line):
     model = ""
+    i = find_colon(id_line, 2) + 1 #find 2nd colon from the right, go to the space right after
 
-    for i in range (0, len(lines)):
-        if device == get_phone(lines[i]):
-            j = find_colon(lines[i], 2) + 1 #find 2nd colon from the right, go to the space right after
-            while lines[i][j] != ' ':
-                model += lines[i][j]
-                j += 1
-            break
-
+    while id_line[i] != ' ':
+        model += id_line[i]
+        i += 1
+            
     return model
 
-def get_name(device):
-    lines = set_up_list()
+def get_name(id_line):
     name = ""
+    i = find_colon(id_line, 1) + 1 #find 1st colon from the right, go to the space right after
 
-    for i in range (0, len(lines)):
-        if device == get_phone(lines[i]):
-            j = find_colon(lines[i], 1) + 1 #find 1st colon from the right, go to the space right after
-            while j != len(lines[i]) - 1:
-                name += lines[i][j]
-                j += 1
-            break
+    while i != len(id_line) - 1:
+        name += id_line[i]
+        i += 1
 
     return name
 
