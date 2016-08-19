@@ -15,7 +15,7 @@ import _init
 import _get_devices
 import _ui_elements_helper
 
-class new_maester:
+class maester:
     _apk_path = ""
     _appt_path = ""
     _adb_path = ""
