@@ -1,7 +1,2 @@
 pytest
 Appium-Python-Client
-psycopg2
-twilio
-unicodecsv
-faker
-num2words
