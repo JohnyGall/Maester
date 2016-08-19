@@ -6,8 +6,8 @@ setup(
   description = 'A platform for running tests on multiple Android devices in series',
   author = 'John James Gallagher & Joseph Thomas Campbell',
   author_email = 'jcamp1095@gmail.com',
-  url = 'https://github.com/JohnyGall/maester', 
-  download_url = 'https://github.com/JohnyGall/maester/tarball/0.1', 
+  url = 'https://github.com/JohnyGall/Maester', 
+  download_url = 'https://github.com/JohnyGall/Maester/tarball/0.1', 
   keywords = ['testing', 'android', 'automation', 'appium', 'multiple', 'series'], 
   classifiers = [],
 )
