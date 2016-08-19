@@ -1,6 +1,6 @@
 # John James Gallagher & Joseph Thomas Campbell
 # August 2016
-# Squire - A platform for running tests on multiple Android devices in series.
+# maester - A platform for running tests on multiple Android devices in series.
 # _get_devices.py
 #
 # This module returns information about the connected phones such as the udids,

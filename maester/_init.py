@@ -1,11 +1,11 @@
 # John James Gallagher & Joseph Thomas Campbell
 # August 2016
-# Squire - A platform for running tests on multiple Android devices in series.
+# maester - A platform for running tests on multiple Android devices in series.
 # _init.py
 #
 # This module will initialize an appium server for a given connected device
 # It starts the appium server in the background using the process manager, pm2.
-# It also sets all the required capabilites for appium so that it can run the 
+# It also sets all the required capabilites for appium so that it can run the
 # specfic apk on the connected device
 
 import os
@@ -56,7 +56,7 @@ def get_platform_version(self, device):
     os.chdir(curr_dir)
     return value
 
-#gets either the appPackage and appActivity for the apk.  Both 
+#gets either the appPackage and appActivity for the apk.  Both
 #capabilities are required by appium
 def get_capability(apk_path, aapt_path, capability):
     cap = ""

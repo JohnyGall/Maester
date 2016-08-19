@@ -1,10 +1,10 @@
 # John James Gallagher & Joseph Thomas Campbell
 # August 2016
-# Squire - A platform for running tests on multiple Android devices in series.
-# squire.py
+# maester - A platform for running tests on multiple Android devices in series.
+# maester.py
 #
-# This module defines the Squire class 'new_squire'. It contains all
-# relevant public functions that can be called from an instance of 
+# This module defines the maester class 'new_maester'. It contains all
+# relevant public functions that can be called from an instance of
 # this class as well as the private variables used in the package
 
 import os
@@ -15,13 +15,13 @@ import _init
 import _get_devices
 import _ui_elements_helper
 
-class new_squire:
+class new_maester:
     _apk_path = ""
     _appt_path = ""
     _adb_path = ""
     _ui_elements = {}
     _driver = None
-    _desired_caps = None 
+    _desired_caps = None
 
     def set_apk_path(self, path):
         self._apk_path = path

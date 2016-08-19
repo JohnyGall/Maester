@@ -1,9 +1,9 @@
 # John James Gallagher & Joseph Thomas Campbell
 # August 2016
-# Squire - A platform for running tests on multiple Android devices in series.
+# maester - A platform for running tests on multiple Android devices in series.
 # _ui_elements_helper.py
 #
-# Adds a new element to the ui_elements dictionary in the squire class.
+# Adds a new element to the ui_elements dictionary in the maester class.
 # Allows the user to get back that element in the form required by appium
 # to interact automatically with the app.
 
@@ -23,6 +23,3 @@ def get_element(self, name):
     else:
         ui_element = self.get_web_driver().find_element_by_id(elem)
     return ui_element
-
-
-
