@@ -1,8 +1,3 @@
-'''
-The Xpaths and IDs of all the UI elements we refer to in unit tests.
-They are all here so when the UI changes we don't have to update a huge number of
-files
-'''
 #adds a new element to the ui_elements dictionary in the squire class
 #the element passed in should either be the resource id of the element
 #or the xpath AS A STRING.  The name is whatever the user wants to call
