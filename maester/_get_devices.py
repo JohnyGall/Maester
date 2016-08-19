@@ -6,7 +6,7 @@
 # This module returns information about the connected phones such as the udids,
 # model, and name.  
 
-import init
+import _init
 import string
 import os
 
@@ -62,7 +62,7 @@ def get_name(id_line):
 def set_up_list(self):
     curr_dir = os.getcwd()
     os.chdir(os.path.expanduser(self._adb_path))
-    output = init.run_cmd_with_output("./adb devices -l")
+    output = _init.run_cmd_with_output("./adb devices -l")
     os.chdir(curr_dir)
     lines = output.splitlines() #make each line an element of the array lines
     lines.pop(0) #get rid of the info line returned
