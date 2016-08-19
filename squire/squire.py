@@ -32,6 +32,12 @@ class new_squire:
     def get_adb_path(self):
         return self._adb_path
 
+    def get_web_driver(self):
+        return self._driver
+
+    def kill_appium(self):
+        _init.kill_appium_server()
+
     def init (self, device):
         _init.init_server(self, device)
 
@@ -42,7 +48,7 @@ class new_squire:
         return _ui_elements_helper.get_element(self, name)
 
     def get_elements(self):
-        return _ui_elements`
+        return _ui_elements
 
     def get_devices(self):
         return _get_devices.get_info()
