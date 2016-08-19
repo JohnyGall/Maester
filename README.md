@@ -1,20 +1,20 @@
 # maester - A platform for running tests on multiple Android devices in series.
 ## By [John Gallagher](http://johnygall.github.io/) & [Joe Campbell](http://jcamp1095.github.io)
 
-### What is maester?
-maester is a platform, written in Python and using [Appium](http://appium.io/),
+### What is Maester?
+Maester is a platform, written in Python and using [Appium](http://appium.io/),
 for running unit tests on multiple Android devices/emulators in series.
 
-### Why Does maester Exist?
+### Why Does Maester Exist?
 The Android ecosystem is fragmented, with a huge number of possible device and
 operating system version combinations. Each of these combinations has their own
 little quirks so running unit tests on as many combinations as possible is the
 key to ensuring that an app works for many users. Unfortunately, running unit
 tests on a series of devices using the raw Appium Python bindings is a
-surprising amount of work. maester abstracts away much of this work, meaning you
+surprising amount of work. Maester abstracts away much of this work, meaning you
 can focus on writing great unit tests that run across devices.
 
-### How do I Installation and Set Up maester?
+### How do I Install and Set Up Maester?
 maester is built on a stack of technologies, and you will need to install them
 all correctly to use maester.
 
@@ -32,5 +32,5 @@ Make sure you meet the minimum requirements for
 -r requirements.txt
 
 ### Ok, Everything is Installed, Can You Help Me Get Started?
-Sure! We have an example project [here](https://github.com/JohnyGall/maester-Example)
+Sure! We have an example project [here](https://github.com/JohnyGall/Maester-Example)
 that demonstrates how to write tests for a free and open source calculator app   
