@@ -1,3 +1,12 @@
+# John James Gallagher & Joseph Thomas Campbell
+# August 2016
+# Squire - A platform for running tests on multiple Android devices in series.
+# squire.py
+#
+# This module defines the Squire class 'new_squire'. It contains all
+# relevant public functions that can be called from an instance of 
+# this class as well as the private variables used in the package
+
 import os
 import sys
 
@@ -12,7 +21,7 @@ class new_squire:
     _adb_path = ""
     _ui_elements = {}
     _driver = None
-    _desired_caps = None #do we actually need this?
+    _desired_caps = None 
 
     def set_apk_path(self, path):
         self._apk_path = path
@@ -51,4 +60,4 @@ class new_squire:
         return _ui_elements
 
     def get_devices(self):
-        return _get_devices.get_info()
+        return _get_devices.get_info(self)

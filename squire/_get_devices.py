@@ -1,21 +1,22 @@
-'''
-This module returns information about the connected phones such as the udids,
-model, and name
-'''
+# John James Gallagher & Joseph Thomas Campbell
+# August 2016
+# Squire - A platform for running tests on multiple Android devices in series.
+# _get_devices.py
+#
+# This module returns information about the connected phones such as the udids,
+# model, and name.  
 
 import init
 import string
 import os
 
-adb_path = '~/Library/Android/sdk/platform-tools' 
-
 #returns a dictionary of relevant information about all
 #connected devices.  Each device will have information 
 #about its udid, model, and name returned
-def get_info():
+def get_info(self):
     devices = []
 
-    lines = set_up_list()
+    lines = set_up_list(self)
 
     for i in range (0, len(lines)):
         info = {"udid": get_phone(lines[i]), 
@@ -58,9 +59,9 @@ def get_name(id_line):
     return name
 
 
-def set_up_list():
+def set_up_list(self):
     curr_dir = os.getcwd()
-    os.chdir(os.path.expanduser(adb_path))
+    os.chdir(os.path.expanduser(self._adb_path))
     output = init.run_cmd_with_output("./adb devices -l")
     os.chdir(curr_dir)
     lines = output.splitlines() #make each line an element of the array lines

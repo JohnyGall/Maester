@@ -1,5 +1,13 @@
-# Need to install the package pm2
-# npm install -g pm2
+# John James Gallagher & Joseph Thomas Campbell
+# August 2016
+# Squire - A platform for running tests on multiple Android devices in series.
+# _init.py
+#
+# This module will initialize an appium server for a given connected device
+# It starts the appium server in the background using the process manager, pm2.
+# It also sets all the required capabilites for appium so that it can run the 
+# specfic apk on the connected device
+
 import os
 import sys
 import shlex
@@ -10,29 +18,17 @@ from appium import webdriver
 
 def init_server(self, device):
     apk_path = os.path.expanduser(self._apk_path)
-    print apk_path
     aapt_path = self._aapt_path
-    print aapt_path
     adb_path = self._adb_path
-    print adb_path
-    # apk_reinstall_flag = [line.rstrip('\n') for line in open('../app/apk_reinstall_flag')]
 
     start_appium_server()
     sleep(20) # allow time for the pm2 process to start
     desired_caps = {}
 
-    '''
-    if(apk_reinstall_flag[0] == "false"): # reinstall the APK after every test - disabled by default
-        #print "apk_reinstall is false, setting desired caps"
-        desired_caps["noReset"] = 'true'
-    '''
     desired_caps['platformName'] = 'Android'
     desired_caps['platformVersion'] = get_platform_version(self, device)
     desired_caps['deviceName'] = 'DeviceName'
-    # Returns abs path relative to this file and not cwd
-    #./aapt dump badging path_to_apk_file
     desired_caps['app'] = apk_path
-    # os.path.abspath(os.path.join(os.path.dirname(__file__), apk_path)) #TODO: Don't hard code thi
     desired_caps['appPackage'] = get_capability(apk_path, aapt_path, "package:")
     desired_caps['appActivity'] = get_capability(apk_path, aapt_path, "launchable-activity:")
     desired_caps['udid'] = device
@@ -60,13 +56,12 @@ def get_platform_version(self, device):
     os.chdir(curr_dir)
     return value
 
-
+#gets either the appPackage and appActivity for the apk.  Both 
+#capabilities are required by appium
 def get_capability(apk_path, aapt_path, capability):
     cap = ""
     curr_dir = os.getcwd()
     os.chdir(os.path.expanduser(aapt_path))
-    print os.getcwd()
-    print apk_path
     output = run_cmd_with_output("./aapt dump badging " + apk_path + ' -l')
     output = output.splitlines()
 
