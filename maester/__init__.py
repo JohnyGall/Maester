@@ -1,1 +1,1 @@
-import maester
+from maester import new_maester
